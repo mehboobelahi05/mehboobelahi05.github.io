@@ -1,0 +1,341 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0px 300px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    align-items: center;
+}
+
+.section {
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+}
+
+.section-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.section-content {
+    display: none;
+}
+
+.toggle-icon {
+    font-size: 20px;
+}
+.tab{
+    display:flex;
+}
+body .tab button {
+    width: 50%;
+    border:none;
+    height: 40px;
+    margin: 0px;
+    cursor: pointer;
+    color: gray;
+}
+body .tab button.active{
+    background-color: #bae7ff;
+    /* color: white; */
+    font-weight: 900;
+    color: black;
+}
+.tab button.practice-que{
+    border-right: 1px solid  #bae7ff;
+}
+
+#add {
+    background-color: #dcdcdc;
+}
+#add .container {
+    max-width: 600px;
+    margin: 0px;
+    padding: 20px;
+}
+
+#add h1 {
+    text-align: center;
+}
+
+#add form {
+    margin-top: 20px;
+}
+
+#add form label {
+    color: gray;
+}
+
+#add .form-group {
+    margin-bottom: 20px;
+}
+
+.hide {
+    display: none;
+}
+
+#add label {
+    display: block;
+    font-weight: bold;
+    color: gray;
+}
+
+#add .que-type, #add .options {
+    display: flex;
+}
+#add .que-type label, #add .options label {
+    padding: 10px 5px 0px 0px;
+}
+#add > .container > div {
+    margin-bottom: 10px;
+}
+#add select,
+#add textarea,
+#add input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 17px;
+}
+#add select {
+    width: 25% ;
+}
+#add textarea , #add input {
+    font-family: inherit;
+}
+#add button {
+    background-color: #0077b6;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#add button:hover {
+    background-color: #005b8f;
+}
+
+.autocomplete-list {
+    background-color: #d4dcdb;
+}
+.autocomplete-list > div {
+    padding: 3px 20px;
+    border: 1px solid gray;
+    border-top: none;
+    cursor: pointer;
+}
+#practice header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #0077b6;
+    color: #fff;
+}
+
+#practice .search-container {
+    display: flex;
+    align-items: center;
+}
+
+#practice #search-input {
+    width: 200px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+#practice #search-button {
+    background-color: #005f94;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+#practice .select-container {
+    display: flex;
+    align-items: center;
+}
+
+#practice select {
+    margin-right: 10px;
+    padding: 3px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#practice .que-area {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid gray;
+    
+}
+
+#practice #answer-button {
+    margin-left: 27px;
+    background-color: white;
+    color: #334de7;
+    border: 0.5px solid #334de7;
+    border-radius: 5px;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+#practice .pagination {
+    text-align: left;
+    margin-top: 20px;
+}
+
+#practice button {
+    background-color: #0077b6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+#practice .question {
+    text-align: left;
+    margin-top: 30px;
+}
+
+#practice .question p {
+    font-size: 24px;
+}
+
+#practice .categories {
+    text-align: left;
+    margin-top: 20px;
+}
+
+#practice .category {
+    display: inline-block;
+    padding: 2px 10px;
+    margin: 0px 6px;
+    border: 1px solid #0077b6;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #fff;
+    color: #0077b6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#practice .category:hover {
+    background-color: #0077b6;
+    color: #fff;
+}
+
+/* Style the answer text */
+
+#practice .answer-area {
+    padding-bottom: 12px;
+    padding-left: 45px;
+}
+
+#practice #answer-text {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Style the buttons */
+#practice .question-level p {
+    color: gray;
+}
+
+#practice #hard-button {
+    background-color: #e74c3c; /* Red */
+    color: #fff;
+    padding: 5px 20px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#practice #medium-button {
+    background-color: #3498db; /* Blue */
+    color: #fff;
+    padding: 5px 20px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#practice #easy-button {
+    background-color: #27ae60; /* Green */
+    color: #fff;
+    padding: 5px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Hover and Active Styles */
+#practice #hard-button:hover {
+    background-color: #c0392b; /* Darker Red on Hover */
+}
+
+#practice #medium-button:hover {
+    background-color: #2980b9; /* Darker Blue on Hover */
+}
+
+#practice #easy-button:hover {
+    background-color: #219450; /* Darker Green on Hover */
+}
+
+#practice #hard-button:active {
+    background-color: #a3271d; /* Darkest Red on Active */
+}
+
+#practice #medium-button:active {
+    background-color: #1c6ba3; /* Darkest Blue on Active */
+}
+
+#practice #easy-button:active {
+    background-color: #19713f; /* Darkest Green on Active */
+}
+
+#practice .bottom {
+    padding: 13px;
+    display: flex;
+}
+
+#practice #prev-button {
+    margin-left: auto;
+}
+
+#practice .hide {
+    display: none;
+}
+
+
+#refresh-icon {
+    font-size: 20px;
+    color: #ebe7e7;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+
+@media screen and (max-width: 700px) { 
+body {
+    margin: 0px;
+    width:100%;
+    box-shadow: none;
+}
+
+}

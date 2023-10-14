@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title> Practice </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="tab">
+        <button class="tablinks practice-que active" onclick="openSection('practice')">Practice</button>
+        <button class="tablinks add-que" onclick="openSection('add')">Add</button>
+    </div>
+    <div class="main-content">
+        <div id="practice" class="tabcontent">
+            <header>
+                <div class="select-container">
+                    <div class="que-type">
+                        <label>Type:</label>
+                        <select id="level-select">Type:
+                            <option value="normal">normal</option>
+                            <option value="mcq">mcq</option>
+                        </select>
+                    </div>
+                    <div class="que-level">
+                        <label>Level:</label>
+                        <select id="type-select"> Level:
+                            <option value="all">all</option>
+                            <option value="easy">easy</option>
+                            <option value="medium">medium</option>
+                            <option value="hard">hard</option>
+                            <option value="wrong">wrong</option>
+                        </select>
+                    </div>
+                    
+                </div>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Category...">
+                    
+                </div>
+                <i id="refresh-icon" class="fas fa-sync"></i>
+            </header>
+            <div class="que-area" id="question-area">
+                <div class="message">
+                    <label> 1/20 </label>
+                    
+                </div>
+                <div class="question">
+                    <p>Which organelle is the energy house of the cell?</p>
+                </div>
+                <div class="answer-area hide">
+                    <!-- Answer Text -->
+                    <p id="answer-text">Mitocondria is the power house of the cell.</p>
+        
+                    <!-- Buttons for Hard, Medium, and Easy -->
+                    <div class='question-level'>
+                         <p >How was question level?</p>
+                         <button id="hard-button">Hard</button>
+                         <button id="medium-button">Medium</button>
+                         <button id="easy-button">Easy</button>
+                    </div>
+        
+            </div>
+            <div class="categories-area hide">
+                <p style="color:gray"> This question belongs to following categories:</p> 
+                <div class="categories">    
+                  <span class="category">Biology</span>
+                  <span class="category">Cell</span>
+                  <span class="category">Organelles</span>
+                </div>
+            </div>    
+                
+            </div>
+            <div class='bottom'>
+                  <button id="answer-button">Check answer</button>
+                  <button id="prev-button" class=''> << Previous </button>
+                  <button id="next-button"> Next >> </button>
+            </div>
+        
+            
+            <div class="pagination">
+        
+            </div>
+        </div>
+        <div id="add" class="tabcontent hide">
+            <div class="container">
+                <div class="que-type">
+                    <label>Type:</label>
+                    <select>
+                        <option value="normal">Normal</option>
+                        <option value="mcq">MCQ</option>
+                    </select>
+                </div>
+
+                <div class="que-text">
+                    <label>Question:</label>
+                    <textarea id="question" name="question"  placeholder=" Add question text here ... " rows="4"></textarea>
+                </div>
+
+                <div class=" options hide ">
+                    <label>Answer:</label>
+                        <select id="answer-option">
+                            <option value="a">option a</option>
+                            <option value="b">option b</option>
+                            <option value="c">option c</option>
+                            <option value="d">option d</option>
+                        </select>
+                </div>
+
+                <div class="categories">
+                    <label for="categories">Categories:</label>
+                    <input type="text" id="categories" placeholder="biology, cell, genetics " name="categories">
+                </div>
+
+                <div class="exp-text">
+                    <label>Explanation:</label>
+                    <textarea id="explanation" name="explanation" placeholder=" Add answer/explaination text here ... "  rows="4"></textarea>
+                </div>
+    
+                <button class="add-que">Add Question</button>
+            </div>
+            
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
