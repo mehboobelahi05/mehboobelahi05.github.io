@@ -9,14 +9,14 @@
 </head>
 <body>
     <div class="tab">
-        <button class="tablinks practice-que active" onclick="openSection('practice')">Practice</button>
-        <button class="tablinks add-que" onclick="openSection('add')">Add</button>
+        <button class="tablinks practice-que active">Practice</button>
+        <button class="tablinks add-que">Add</button>
     </div>
     <div class="main-content">
         <div id="practice" class="tabcontent">
             <header>
-                <div class="select-container">
-                    <div class="que-type">
+                <div class="select-container ">
+                    <div class="que-type hide">
                         <label>Type:</label>
                         <select id="level-select">Type:
                             <option value="normal">normal</option>
@@ -30,13 +30,13 @@
                             <option value="easy">easy</option>
                             <option value="medium">medium</option>
                             <option value="hard">hard</option>
-                            <option value="wrong">wrong</option>
                         </select>
                     </div>
                     
                 </div>
                 <div class="search-container">
                     <input type="text" id="search-input" placeholder="Category...">
+                    <div class="clear-icon hide" id="clear-icon">&#10005;</div>
                     
                 </div>
                 <i id="refresh-icon" class="fas fa-sync hide"></i>
@@ -56,10 +56,12 @@
                     <!-- Buttons for Hard, Medium, and Easy -->
                     <div class='question-level'>
                          <p >Level:</p>
-                         <button id="hard-button">Hard</button>
-                         <button id="medium-button">Medium</button>
-                         <button id="easy-button">Easy</button>
+                         <button id="hard-button" value="hard" >Hard</button>
+                         <button id="medium-button" value="medium" >Medium</button>
+                         <button id="easy-button" value="easy">Easy</button>
+                         
                     </div>
+                    <div class="que-level-message"></div>
         
             </div>
             <div class="categories-area hide">
@@ -74,8 +76,8 @@
             </div>
             <div class='bottom'>
                   <button id="answer-button">Check answer</button>
-                  <button id="prev-button" class=''> < Prev </button>
-                  <button id="next-button"> Next > </button>
+                  <button id="prev-button" class=''> <<  </button>
+                  <button id="next-button">  >> </button>
             </div>
         
             
@@ -85,7 +87,7 @@
         </div>
         <div id="add" class="tabcontent hide">
             <div class="container">
-                <div class="que-type">
+                <div class="que-type hide">
                     <label>Type:</label>
                     <select>
                         <option value="normal">Normal</option>
@@ -95,7 +97,12 @@
 
                 <div class="que-text">
                     <label>Question:</label>
-                    <textarea id="question" name="question"  placeholder=" Add question text here ... " rows="4"></textarea>
+                    <textarea id="question" name="question"  placeholder=" Add question here ... " rows="4"></textarea>
+                </div>
+
+                <div class="exp-text">
+                    <label>Explanation:</label>
+                    <textarea id="explanation" name="explanation" placeholder=" Add explaination here ... "  rows="4"></textarea>
                 </div>
 
                 <div class=" options hide ">
@@ -110,13 +117,10 @@
 
                 <div class="categories">
                     <label for="categories">Categories:</label>
-                    <input type="text" id="categories" placeholder="biology, cell, genetics " name="categories">
+                    <input type="text" id="categories" placeholder="Add categories e.g biology, cell, genetics " name="categories">
                 </div>
-
-                <div class="exp-text">
-                    <label>Explanation:</label>
-                    <textarea id="explanation" name="explanation" placeholder=" Add answer/explaination text here ... "  rows="4"></textarea>
-                </div>
+                <div class="que-add-message success hide"></div>
+                
     
                 <button class="add-que">Add Question</button>
             </div>
