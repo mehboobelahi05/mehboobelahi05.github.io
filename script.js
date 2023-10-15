@@ -8,10 +8,11 @@ var que_data_array = [{
     search_text:'',
     
     fil_que_array:[],
+    fil_que_count:0,
     que_no:0,
+    que_no_index:0,
     que_id:'',
     que_level:'all',
-    que_type:'normal', 
 }];
 var qq = que_data_array[0];
 
@@ -34,18 +35,13 @@ document.querySelector('.tablinks.add-que').addEventListener('click', function()
 
 document.querySelector(' button#answer-button').addEventListener('click', function(){
     document.querySelector('.answer-area').classList.remove('hide');
+    document.querySelector('.que-level-message').textContent = '';
     document.querySelector('.categories-area').classList.remove('hide');
 });
 
 
 
-function loadQuestion(){
-    qq.que_type = document.querySelector('#practice .que-type select').value.toLowerCase().trim();
-    qq.que_level = document.querySelector('#practice .que-level select').value.toLowerCase().trim();
-    qq.search_cat = document.querySelector('#practice .search-container input').value.trim();
-    filterQuestion();
-}
-loadQuestion();
+
 
 document.querySelectorAll('#practice .que-level select').forEach(select => {
     select.addEventListener('change', function() {
@@ -67,7 +63,7 @@ document.querySelectorAll('#practice .que-level select').forEach(select => {
 
 function loadCategories(){
     qq.cat_array = [];
-    qq.que_array.forEach( array => {
+    qq.fil_que_array.forEach( array => {
         let cat =  array.categories;
         let categories = cat.split(',');
         categories.forEach(category => {
@@ -121,6 +117,18 @@ function setAutoCompelete() {
         autocompleteList.style.left = document.querySelector('input#search-input').offsetLeft + 'px';
         autocompleteList.classList.add('active');
         autocompleteList.classList.remove('hide');
+
+        autocompleteList.style.left = document.querySelector('input#search-input').offsetLeft + 'px';
+        
+        document.querySelector('.clear-icon').classList.remove('hide');
+        document.querySelector('.clear-icon').addEventListener('click', function(){
+            document.querySelector('#practice .search-container input').value = '';
+            qq.search_cat = '';
+            document.querySelector('.clear-icon').classList.add('hide');
+            filterQuestion();
+        })
+
+        autocompleteList.classList.remove('hide');
     });
 
     // Close the autocomplete list when clicking outside the input field
@@ -132,37 +140,144 @@ function setAutoCompelete() {
     });
 }
 
-function filterQuestion(){
-  console.log( 'filter called ' + qq.que_level + ' ' + qq.que_type + ' ' + qq.search_cat  );
+document.querySelectorAll('.question-level button').forEach( btn => {
+    btn.addEventListener('click', function(event){
+        qq.fil_que_array[ qq.que_no ].level = btn.value;
+        document.querySelector('.que-level-message').textContent = 'Question is added as ' + btn.value;
+        debugger;
+        var xx = '#practice #'+ btn.value +'-button';
+        xx = document.querySelector(xx);
+        xx = getComputedStyle(xx);
+        xx = xx.backgroundColor;
+        document.querySelector('.que-level-message').style.color = xx;
 
+    });
+});
+
+document.querySelector('#next-button').addEventListener('click', function(){
+        ++qq.que_no;
+        if( qq.que_no  < qq.fil_que_array.length){
+            showQuestion();
+        } else {
+            --qq.que_no;
+        }
+});
+
+document.querySelector('#prev-button').addEventListener('click', function(){
+    --qq.que_no;
+    if( qq.que_no  >= 0){
+        showQuestion();
+    } else {
+        qq.que_no = 0;
+    }
+});
+
+function filterQuestion(){
+    qq.que_level = document.querySelector('#practice .que-level select').value.toLowerCase().trim();
+    qq.search_cat = document.querySelector('#practice .search-container input').value.trim();
+    qq.fil_que_array = [];
+    qq.que_array.forEach(item => {
+        if( (qq.que_level == 'all' || qq.que_level == item.level ) && item.categories.includes( qq.search_cat ) ){
+            qq.fil_que_array.push(item);
+        }    
+    });
+    if( qq.fil_que_array.length > 0){
+        qq.que_no = 0;
+        loadCategories();
+        showQuestion();
+    } else {
+        document.querySelector('.que-area .message').textContent = 'No Question Found';
+        document.querySelector('.question p').textContent = '';
+        document.querySelector('.bottom').classList.add('hide');
+    }
+    
 }
+
+function noQuestion(){
+        document.querySelector('.que-area .message').textContent = 'No Question Found';
+        document.querySelector('.question p').textContent = '';
+        document.querySelector('.bottom').classList.add('hide');
+}
+function showQuestion(){
+    document.querySelector('.bottom').classList.remove('hide'); 
+    document.querySelector('.answer-area').classList.add('hide');
+    document.querySelector('.categories-area').classList.add('hide');
+   
+    loadQuestionCategories();
+    document.querySelector('.que-area .message').textContent = (qq.que_no + 1) +'/'+ qq.fil_que_array.length;
+    document.querySelector('.question p').textContent = qq.fil_que_array[qq.que_no].question;
+    document.querySelector('#answer-text').textContent = qq.fil_que_array[qq.que_no].explanation;
+}
+
+function loadQuestionCategories(){
+    var div = document.querySelector('.categories');
+    div.innerHTML = '';
+    var cat = qq.fil_que_array[ qq.que_no ].categories;
+    var categories = cat.split(',');
+    categories.forEach( cat => {
+        cat = cat.toLowerCase().trim();
+        var span = document.createElement('span');
+        span.className = 'category';
+        span.textContent = cat;
+        div.append(span);
+
+        if( qq.search_cat == cat  ){
+            span.classList.add('search-cat');
+        } else {
+            span.addEventListener('click', function(){
+                qq.search_cat = cat;
+                document.querySelector('#practice .search-container input').value = cat;
+                filterQuestion();
+            });
+        }
+        
+        
+        
+    });
+}
+
+
+const searchInput = document.getElementById("search-input");
+searchInput.addEventListener("input", function () {
+    if (this.value.trim() !== "") {
+        this.classList.add("active");
+    } else {
+        this.classList.remove("active");
+    }
+});
+searchInput.addEventListener("click", function (e) {
+    if (this.classList.contains("active")) {
+        if (e.target.matches("#search-input.active::after")) {
+            this.value = ""; // Clear the input
+            this.classList.remove("active");
+        }
+    }
+});
+
 
 
 
 document.querySelector('#add button.add-que').addEventListener('click', addQuestion);
 
 function addQuestion(){
-    var type = document.querySelector("#add .que-type select").value.toLowerCase();
-    var answer;
-    if ( type == 'mcq' ){
-        answer = document.querySelector("#add .options select").value;
-    } else {
-        answer = '';
-    }
-
     qq.que_array.push({
         id: generateID(),
-        type: document.querySelector("#add .que-type select").value.toLowerCase(),
+        type: 'normal',
         question: document.querySelector("textarea#question").value.trim(),
         explanation: document.querySelector("textarea#explanation").value.trim(),
-        answer: answer,
-        categories: document.querySelector("#add .categories input").value.toLowerCase().trim(),
+        categories: document.querySelector("#add .categories input").value.toLowerCase().trim() + ', ' + getTodayDateUid(),
         level: 'hard',
         wronged: false,
         date: getTodayDateUid(),
         filter: true
     });
-    console.log(qq.que_array);
+    document.querySelector('.que-add-message').textContent = 'Question has been added';
+    document.querySelector('.que-add-message').classList.remove('hide');
+    setTimeout(() => { 
+        document.querySelector('.que-add-message').classList.add('hide');
+    }, 4000);
+
+    console.log('me: question has been added.\n Here is the question array' + qq.que_array);
     saveData('my_que_array', que_data_array );
 }
 
@@ -220,5 +335,5 @@ function getData(key) {
 
 getData('my_que_array');
 loadCategories();
-
+filterQuestion();
 
