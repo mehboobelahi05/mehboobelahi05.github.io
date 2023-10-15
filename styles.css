@@ -3,6 +3,7 @@ body {
     margin: 0px 300px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     align-items: center;
+    background-color: #f0f0f0;
 }
 
 .section {
@@ -33,6 +34,9 @@ body {
 .tab{
     display:flex;
 }
+.main-content {
+    background-color: white;
+}
 body .tab button {
     width: 50%;
     border:none;
@@ -51,9 +55,6 @@ body .tab button.active{
     border-right: 1px solid  #bae7ff;
 }
 
-#add {
-    background-color: #dcdcdc;
-}
 #add .container {
     max-width: 600px;
     margin: 0px;
@@ -76,12 +77,12 @@ body .tab button.active{
     margin-bottom: 20px;
 }
 
-.hide {
-    display: none;
+body .hide {
+    display: none !important;
 }
 
 #add label {
-    display: block;
+    display: none;
     font-weight: bold;
     color: black;
 }
@@ -102,8 +103,15 @@ body .tab button.active{
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 17px;
+    font-size: 15px;
 }
+.success {
+    color: green;
+}
+.faile {
+    color: red;
+}
+
 #add select {
     width: 90px;
     padding: 2px;
@@ -112,6 +120,14 @@ body .tab button.active{
 }
 #add textarea , #add input {
     font-family: inherit;
+}
+#add textarea::placeholder, #add input::placeholder{
+    font-size: 12px;
+    font-style: italic;
+}
+
+#add .que-add-message{
+    margin: 5px 0px;
 }
 #add button {
     background-color: #0077b6;
@@ -218,33 +234,63 @@ body .tab button.active{
     text-align: left;
     margin-top: 30px;
 }
-
+#practice .que-level-message {
+    font-size: 13px;
+    margin: 3px 0px;
+}
 #practice .question p {
     font-size: 24px;
 }
 
 #practice .categories {
     text-align: left;
-    margin-top: 20px;
+    margin-top: 10px;
+}
+#practice .que-area .categories-area p {
+    color: gray;
+    font-size: 12px;
+    margin-bottom: 0px;
 }
 
 #practice .category {
     display: inline-block;
-    padding: 2px 10px;
-    margin: 0px 6px;
-    border: 1px solid #0077b6;
+    padding: 1px 10px;
+    margin: 0px 3px;
+    border: 1px solid #8acaec;
     border-radius: 15px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 11px;
     background-color: #fff;
-    color: #0077b6;
+    color: #006093;
     transition: background-color 0.3s, color 0.3s;
 }
-
-#practice .category:hover {
-    background-color: #0077b6;
-    color: #fff;
+#practice .category.search-cat{
+    color: gray;
+    border: 1px solid gray;
+    cursor: auto;
 }
+
+.input-container {
+    position: relative;
+    display: inline-block;
+}
+
+#search-input {
+    padding-right: 30px; /* Reserve space for the clear icon */
+}
+
+.clear-icon {
+    position: absolute;
+    top: 11%;
+    right: 31px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 11px;
+    color: #653232;
+    margin-top: 5px;
+}
+
+
 
 /* Style the answer text */
 
@@ -337,9 +383,7 @@ body .tab button.active{
     margin-left: auto;
 }
 
-#practice .hide {
-    display: none;
-}
+
 
 
 #refresh-icon {
