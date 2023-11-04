@@ -16,6 +16,29 @@ var que_data_array = [{
 }];
 var qq = que_data_array[0];
 
+document.getElementById('backup').addEventListener('click', function() {
+  // Get the current date in the format yyyy_mm_dd
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  const currentDate = `${year}_${month}_${day}`;
+
+  // Create a Blob containing the JSON data
+  const jsonBlob = new Blob([JSON.stringify(que_data_array)], { type: 'application/json' });
+
+  // Create a download link for the Blob
+  const downloadLink = document.createElement('a');
+  downloadLink.href = URL.createObjectURL(jsonBlob);
+  downloadLink.download = `data_backup_${currentDate}.json`;
+
+  // Simulate a click on the download link to trigger the download
+  downloadLink.click();
+
+  // Clean up by revoking the Blob URL
+  URL.revokeObjectURL(downloadLink.href);
+});
+
 
 
 document.querySelector('.tablinks.practice-que').addEventListener('click', function(){
